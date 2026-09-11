@@ -1,0 +1,7 @@
+# generator working files
+_gen/_*.js
+_gen/_*.txt
+
+# OS / editor
+.DS_Store
+Thumbs.db
