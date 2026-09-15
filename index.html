@@ -194,6 +194,8 @@ h1{font-size:clamp(58px,9vw,142px);line-height:.82;letter-spacing:-.075em;margin
 .project-entry:nth-child(1) .project-thumb img{object-position:center}.project-entry:nth-child(2) .project-thumb img{filter:grayscale(1);object-position:center}.project-entry:nth-child(3) .project-thumb img{object-position:center}
 .project-entry-body{padding:22px}.project-entry .num{font:10px "DM Mono",monospace;color:#777}.project-entry h3{font-size:27px;letter-spacing:-.05em;margin:9px 0 8px}.project-entry p{font-size:12px;line-height:1.65;color:#666;margin:0}.project-entry .entry-link{display:block;margin-top:18px;font:10px "DM Mono",monospace}
 .thinking-directory{background:#f4f1ea}.thinking-directory .directory-list{background:transparent}
+.lab-directory{background:#202020;color:#f7f4ed}.lab-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-top:10px}.lab-card{border:1px solid #777;padding:25px 25px 22px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:.25s;text-decoration:none;color:inherit}.lab-card:hover,.lab-card:focus-visible{background:#2b2b2b;border-color:#f7f4ed;outline:none}.lab-no{font:10px "DM Mono",monospace;color:#aaa;letter-spacing:.04em}.lab-card h3{font-size:27px;margin:38px 0 10px;letter-spacing:-.04em;line-height:1.05}.lab-card p{font-size:12px;line-height:1.7;color:#c5c5c5;margin:0}.lab-card .lab-pipe{font:10px "DM Mono",monospace;color:#8f8f8f;margin-top:18px;letter-spacing:.03em}.lab-card .lab-go{font:10px "DM Mono",monospace;color:#f7f4ed;margin-top:10px}
+.lab-directory .directory-index{border-top:1px solid #555}.lab-directory .directory-index div{border-bottom:1px solid #444}.lab-directory .directory-intro{color:#c5c5c5}.lab-directory .directory-kicker{color:#9a9a9a}
 .about-directory{background:#e9e7e2}.about-grid{display:grid;grid-template-columns:1.05fr 2fr;gap:6vw;align-items:start}.about-name{font-size:clamp(58px,8vw,105px);line-height:.78;letter-spacing:-.075em;margin:0 0 25px}.about-small{font:10px "DM Mono",monospace;color:#666;line-height:1.7}.about-statement{font-size:19px;line-height:1.8;max-width:700px;margin:0 0 35px}.about-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;border-top:1px solid #222;padding-top:22px}.about-columns h4{font:10px "DM Mono",monospace;margin:0 0 18px}.about-columns p{font-size:13px;line-height:1.8;margin:0;color:#555}.about-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:25px}.about-tag{border:1px solid #222;border-radius:999px;padding:7px 11px;font:10px "DM Mono",monospace;background:#f7f5f0}
 @media(max-width:800px){.directory-head,.directory-body,.about-grid,.about-reference-grid{grid-template-columns:1fr}.directory-body{gap:30px}.project-directory,.lab-grid,.about-columns{grid-template-columns:1fr}.project-entry{grid-template-columns:120px 1fr}.directory-row{grid-template-columns:40px 1fr 55px}.directory-index{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}.about-name{font-size:70px}.about-visual-wrap{min-height:430px}.about-visual-frame img{height:390px}.about-float-cat{right:2px}.about-editorial-title{font-size:54px}}
 </style>
@@ -285,8 +287,8 @@ h1{font-size:clamp(58px,9vw,142px);line-height:.82;letter-spacing:-.075em;margin
 <header class="topbar">
   <div class="logo">Carla <span>/ 咕咕</span></div>
   <nav class="nav">
-    <a href="#home">Home</a><a href="#projects">Projects</a><a href="#research">Research</a>
-    <a href="#thinking">Thinking</a><a href="#about">About</a>
+    <a href="#home">Home</a><a href="#projects">Projects</a><a href="#lab">AI Lab</a>
+    <a href="#research">Research</a><a href="#thinking">Thinking</a><a href="#about">About</a>
     <a href="#resume">Resume</a>
   </nav>
 </header>
@@ -333,13 +335,18 @@ h1{font-size:clamp(58px,9vw,142px);line-height:.82;letter-spacing:-.075em;margin
   </div>
 </section>
 
+<section class="section-directory lab-directory" id="lab">
+  <div class="directory-head"><div><div class="directory-kicker">03 / AI LAB</div><h2 class="directory-title">Try<br>things.</h2></div><div class="directory-intro">这里放我用 AI 真正做过的实验：Agent、工作流与自动化。每个都记录了真实的流程设计、迭代和边界，而不是概念演示。</div></div>
+  <div class="directory-body"><div class="directory-index"><div class="active"><span>EXPERIMENTS</span><span id="labCount"></span></div><div><span>AGENT</span><span>↘</span></div><div><span>BUILD</span><span>↗</span></div></div><div class="lab-grid" id="labGrid"></div></div>
+</section>
+
 <section class="section-directory" id="research">
-  <div class="directory-head"><div><div class="directory-kicker">03 / RESEARCH</div><h2 class="directory-title">Look<br>closer.</h2></div><div class="directory-intro">我会把日常看到的产品、用户行为和体验问题拆开看。研究不一定都形成正式项目，但会持续积累成判断力。</div></div>
+  <div class="directory-head"><div><div class="directory-kicker">04 / RESEARCH</div><h2 class="directory-title">Look<br>closer.</h2></div><div class="directory-intro">我会把日常看到的产品、用户行为和体验问题拆开看。研究不一定都形成正式项目，但会持续积累成判断力。</div></div>
   <div class="directory-body"><div class="directory-index"><div class="active"><span>RESEARCH NOTES</span><span id="researchCount"></span></div></div><div class="directory-list" id="researchList"></div></div>
 </section>
 
 <section class="section-directory thinking-directory" id="thinking">
-  <div class="directory-head"><div><div class="directory-kicker">04 / THINKING</div><h2 class="directory-title">Things<br>I think.</h2></div><div class="directory-intro">比“会不会写 PRD”更重要的是，我越来越在意一个产品为什么值得做、一个问题为什么值得解决，以及人为什么会做出这样的选择。</div></div>
+  <div class="directory-head"><div><div class="directory-kicker">05 / THINKING</div><h2 class="directory-title">Things<br>I think.</h2></div><div class="directory-intro">比“会不会写 PRD”更重要的是，我越来越在意一个产品为什么值得做、一个问题为什么值得解决，以及人为什么会做出这样的选择。</div></div>
   <div class="directory-body"><div class="directory-index"><div class="active"><span>ESSAYS</span><span id="thinkingCount"></span></div></div><div class="directory-list" id="thinkingList"></div></div>
 </section>
 
@@ -355,7 +362,7 @@ h1{font-size:clamp(58px,9vw,142px);line-height:.82;letter-spacing:-.075em;margin
       <div class="about-caption hand">curious<br>always<span>people · products · technology</span></div>
     </div>
     <div class="about-copy-block">
-      <div class="directory-kicker">05 / ABOUT ME</div>
+      <div class="directory-kicker">06 / ABOUT ME</div>
       <h2 class="about-editorial-title">I am interested in the space<br>between people, products<br>and technology.</h2>
       <p class="about-editorial-copy">我是安徽大学数据科学与大数据技术专业的学生，也是一名一直在动手做产品的探索者。相比“会不会某个工具”，我更在意能不能观察到真实的问题、把问题说清楚，并把方案真正做出来、跑起来、再回头复盘。</p>
       <p class="about-editorial-copy">我的探索大多围绕产品与 AI 展开：从关系记录产品 LoveMemo、个人成长系统 Personal OS 到面向海外市场的 VybCall Video，我练习从用户问题走到 PRD、User Flow 与可运行原型；同时在学习把 AI 用在产品里——Agent 工作流、Prompt 设计、结构化输出，以及“该不该让 AI 介入、边界在哪”的判断。我也把日常观察写成 Research 与 Thinking，让每一次拆解都成为下一次判断的素材。</p>
@@ -489,6 +496,19 @@ function populateCards(cat, listId, countId, goLabel){
   }).join('');
   const cnt=document.getElementById(countId); if(cnt) cnt.textContent=String(ids.length).padStart(2,'0');
 }
+/* ---------- populate AI Lab experiment cards from real data ---------- */
+function populateLab(){
+  const g=ARTICLES['lab']; const grid=document.getElementById('labGrid');
+  if(!g||!grid) return;
+  const ids=g.order||Object.keys(g.items||{});
+  grid.innerHTML = ids.map(id=>{
+    const a=g.items[id];
+    const desc = a.subtitle || firstText(a.html);
+    const pipe = a.pipeline ? `<div class="lab-pipe">${esc(a.pipeline)}</div>` : '';
+    return `<article class="lab-card" role="link" tabindex="0" onclick="openArticle('lab','${id}')"><div><div class="lab-no">${esc(a.no)} / ${esc(a.category||'AGENT')}</div><h3>${esc(a.title)}</h3><p>${esc(desc)}</p></div><div>${pipe}<div class="lab-go">READ ↗</div></div></article>`;
+  }).join('');
+  const cnt=document.getElementById('labCount'); if(cnt) cnt.textContent=String(ids.length).padStart(2,'0');
+}
 /* ---------- router ---------- */
 const main=document.querySelector('main'), view=document.getElementById('detailView');
 function showDetail(html){
@@ -535,6 +555,7 @@ document.addEventListener('keydown',e=>{
 /* init */
 initResume();
 populateCards('research','researchList','researchCount','READ ↗');
+populateLab();
 populateCards('thinking','thinkingList','thinkingCount','ARTICLE ↗');
 route();
 </script>

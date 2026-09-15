@@ -230,6 +230,14 @@ THINKING = [
     ('anime', 'content/thinking/AI漫剧为什么今年爆火？/AI漫剧为什么今年爆火？.md', 'plain'),
     ('cart',  'content/thinking/关于购物车的思考/购物车的取舍：一个被大多数人忽略的产品哲学分野.md', 'plain'),
 ]
+# AI Lab experiments. Each: (id, path, mode, category_label, pipeline_tag).
+# category_label / pipeline_tag are presentation labels for the lab card, not content.
+LAB = [
+    ('insight', 'content/ai-lab/user-insight-agent.md', 'md', 'AGENT',
+     'RAW FEEDBACK → CLASSIFY → NORMALIZE → TOOL CALL → EVIDENCE'),
+    ('ringtone', 'content/ai-lab/video-ringtone-agent.md', 'md', 'AGENT',
+     'MUSIC → EMOTION → MATCH → RANK → PLAN → FFMPEG'),
+]
 
 def build_group(defs):
     items = {}
@@ -276,12 +284,32 @@ def md_article(raw):
         cleaned.append(l)
     return title, subtitle, md_to_html('\n'.join(cleaned))
 
+def build_lab(defs):
+    """Lab experiments carry two extra presentation labels: category + pipeline."""
+    items = {}
+    order = []
+    report = []
+    for idx, (aid, rel, mode, category, pipeline) in enumerate(defs):
+        p = os.path.join(ROOT, rel.replace('/', os.sep))
+        if not os.path.exists(p):
+            report.append('MISSING: ' + rel); continue
+        raw = read(p)
+        title, subtitle, body = md_article(raw)
+        items[aid] = {'no': '%02d' % (idx+1), 'title': title, 'subtitle': subtitle,
+                      'html': body, 'category': category, 'pipeline': pipeline}
+        order.append(aid)
+        report.append(rel + '  =>  title="%s"' % title)
+    return {'order': order, 'items': items}, report
+
 research_group, research_report = build_group(RESEARCH)
 thinking_group, thinking_report = build_group(THINKING)
+lab_group, lab_report = build_lab(LAB)
 
-research_group['kicker'] = '03 / RESEARCH'
+lab_group['kicker'] = '03 / AI LAB'
+lab_group['back'] = '#lab'
+research_group['kicker'] = '04 / RESEARCH'
 research_group['back'] = '#research'
-thinking_group['kicker'] = '04 / THINKING'
+thinking_group['kicker'] = '05 / THINKING'
 thinking_group['back'] = '#thinking'
 
 # ---------- RESOURCES (from links/project-links.md, real URLs only) ----------
@@ -307,7 +335,7 @@ RESOURCES = {
 data = {
     'PROJECT_DOCS': project_docs,
     'RESOURCES': RESOURCES,
-    'ARTICLE_DATA': {'research': research_group, 'thinking': thinking_group},
+    'ARTICLE_DATA': {'research': research_group, 'lab': lab_group, 'thinking': thinking_group},
 }
 
 out = os.path.join(ROOT, 'content-data.js')
@@ -325,6 +353,8 @@ if project_report.get('missing'):
     print('MISSING PROJECT FILES:', project_report['missing'])
 print('\n=== RESEARCH ===')
 print('\n'.join(research_report))
+print('\n=== AI LAB ===')
+print('\n'.join(lab_report))
 print('\n=== THINKING ===')
 print('\n'.join(thinking_report))
 print('\n=== OUTPUT ===')
